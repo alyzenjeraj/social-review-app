@@ -14,7 +14,7 @@ const Post = ({ post, setCurrentId }) => {
         <Card>
             <CardMedia component='img' image={post.selectedFile} title={post.title}/>
             <div>
-                <Typography variant='h6'>{post.creator}</Typography>
+                <Typography variant='h6'>{post.name}</Typography>
                 <Typography variant='body2'>{moment(post.createdAt).fromNow()}</Typography>
             </div>
             <div>
