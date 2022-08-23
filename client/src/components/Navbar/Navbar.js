@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { AppBar, Avatar, Toolbar, Typography, Button } from '@material-ui/core';
 import useStyles from './styles'
-import restoRev from '../../images/restoreview.png';
+import restoRev from '../../images/memories.png';
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
-import { useHistory, useLocation } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 
 
 
 const Navbar = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const history = useHistory();
+    const navigate = useNavigate();
     const location = useLocation();
     // const user = null
 
@@ -25,7 +25,7 @@ const Navbar = () => {
 
     const logout = () => {
         dispatch({type: 'LOGOUT' })
-        history.push('/auth')
+        navigate('/auth')
         setUser(null)
     }
 

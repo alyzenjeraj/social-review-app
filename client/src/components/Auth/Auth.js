@@ -7,7 +7,7 @@ import Input from './Input';
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from 'jwt-decode'
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 import { signin, signup } from '../../actions/auth'
 
 
@@ -30,16 +30,16 @@ const Auth = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [ isSignup, setIsSignup] = useState(false);
     const dispatch = useDispatch();
-    const history = useHistory();
+    const navigate = useNavigate();
     const [formData, setFormData] = useState(initialState)
     
     const handleSubmit = (e) => {
         e.preventDefault();
         
         if(isSignup) {
-            dispatch(signup(formData, history))
+            dispatch(signup(formData, navigate))
         } else {
-            dispatch(signin(formData, history))
+            dispatch(signin(formData, navigate))
 
         }
     }
@@ -70,7 +70,7 @@ const Auth = () => {
         console.log(result)
 
         dispatch({type: 'AUTH', data: {result}})
-        history.push('/')
+        navigate('/')
     }
 /* global google */  
     useEffect(() => {
