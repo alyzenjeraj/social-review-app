@@ -120,7 +120,7 @@ const Form = ({currentId, setCurrentId}) => {
             
              dispatch(updatePost(currentId, {...postData, name: user?.result?.name}))
         } else {
-            dispatch(createPost(postData))
+            
              dispatch(createPost({...postData, name: user?.result?.name}))
         }
 
