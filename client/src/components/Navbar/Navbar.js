@@ -5,6 +5,7 @@ import restoRev from '../../images/memories.png';
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router';
+import decode  from 'jwt-decode';
 
 
 
@@ -20,6 +21,14 @@ const Navbar = () => {
     console.log(user)
 
     useEffect(() => {
+
+        const token = user?.token;
+        if(token) {
+            const decodedToken = decode(token)
+    
+            if(decodedToken.exp * 1000 < new Date().getTime()) logout()
+        }
+
         setUser(JSON.parse(localStorage.getItem('profile')))
     }, [location])
 
@@ -28,6 +37,8 @@ const Navbar = () => {
         navigate('/auth')
         setUser(null)
     }
+
+    
 
     return (
         <div>
