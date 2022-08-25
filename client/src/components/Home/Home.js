@@ -61,9 +61,12 @@ const Home = () => {
                             <Button onClick={searchPost} variant='contained' color='primary'>Search</Button>
                         </AppBar>
                             <Form currentId={currentId} setCurrentId={setCurrentId} />
-                            <Paper elevation={6} >
+                            {(!searchQuery && !tags.length) && (
+                                <Paper elevation={6} >
                                 <Pagesfeature page={page} />
                             </Paper>
+                            )}
+                            
                         </Grid>
                     </Grid>
                 </Container>
