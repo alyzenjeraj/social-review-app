@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Card, CardActions, CardContent, CardMedia, Button, Typography, ButtonBase } from '@material-ui/core'
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt'
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
@@ -17,10 +17,15 @@ const Post = ({ post, setCurrentId }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem('profile'))
+    const [likes, setLikes] = useState(post?.likes)
 
+    const hasLikedPost = post?.likes?.find((like) => like === (user?.result?.googleId || user?.result?._id))
+    
     const Likes = () => {
         
-        if (post?.likes.length > 0) {
+        
+
+        if (post?.likes?.length > 0) {
           return post.likes.find((like) => like === (user?.result?.googleId || user?.result?._id))
             ? (
               <><ThumbUpAltIcon fontSize="small" />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}` }</>
@@ -34,7 +39,16 @@ const Post = ({ post, setCurrentId }) => {
 
       const openPost = () => navigate(`/posts/${post._id}`)
 
-    
+    const handleLike = () => {
+        dispatch(likePost(post._id))
+
+        if(hasLikedPost) {
+            setLikes(post.likes.filter((id) => id !== (user?.result.googleId || user?.result?._id)))
+        } else {
+
+        }
+
+    }
 
     return (
         <Card raised elevation={6}>
@@ -60,7 +74,7 @@ const Post = ({ post, setCurrentId }) => {
             </CardContent>
             
             <CardActions>
-                <Button size='small' color='primary' disabled={!user?.result} onClick={() => dispatch(likePost(post._id))}>
+                <Button size='small' color='primary' disabled={!user?.result} onClick={handleLike}>
                     <Likes />
                 </Button>
                 <Button size='small' color='primary' onClick={() => dispatch(deletePost(post._id))}>

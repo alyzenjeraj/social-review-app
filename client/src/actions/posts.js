@@ -38,10 +38,11 @@ export const getPostBySearch = (searchQuery) => async (dispatch) => {
     }
 }
 
-export const createPost = (post) => async (dispatch) => {
+export const createPost = (post, navigate) => async (dispatch) => {
     try {
         dispatch({type: 'START_LOADING'})
         const { data } = await api.createPost(post)
+        navigate(`/posts/${data._id}`)
         dispatch({type: 'CREATE', payload: data})
         dispatch({type: 'END_LOADING'})
     } catch (error) {
@@ -74,5 +75,16 @@ export const likePost = (id) => async (dispatch) => {
         dispatch({ type: 'LIKE', payload: data })
     } catch (error) {
         console.log(error);
+    }
+}
+
+export const commentPost = (value, _id) => async (dispatch) => {
+    try {
+        console.log('hello')
+        const { data } = await api.comment(value, _id)
+        dispatch({type:'COMMENT', payload: data})
+        return data.comments;
+    } catch (error) {
+        console.log(error)
     }
 }

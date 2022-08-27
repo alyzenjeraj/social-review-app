@@ -89,6 +89,7 @@ import FileBase from 'react-file-base64'
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost, updatePost } from '../actions/posts';
+import { useNavigate } from 'react-router';
 
 
 
@@ -96,6 +97,7 @@ import { createPost, updatePost } from '../actions/posts';
 const Form = ({currentId, setCurrentId}) => {
     
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem('profile'));
 
     const post = useSelector((state) => currentId ? state.posts.posts.find((p) => p._id === currentId) : null)
@@ -118,12 +120,13 @@ const Form = ({currentId, setCurrentId}) => {
 
         if(currentId) {
             
-             dispatch(updatePost(currentId, {...postData, name: user?.result?.name}))
+            dispatch(updatePost(currentId, {...postData, name: user?.result?.name}))
+            
         } else {
             
-             dispatch(createPost({...postData, name: user?.result?.name}))
+             dispatch(createPost({...postData, name: user?.result?.name}, navigate))
         }
-
+        navigate('/posts')
         clear();
         
     }
