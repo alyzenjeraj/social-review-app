@@ -105,7 +105,7 @@ const Form = ({currentId, setCurrentId}) => {
     const [postData, setPostData] = useState({
         // creator: '',
         title: '',
-        mmessage: '',
+        message: '',
         tags: '',
         selectedFile:'',
     })
@@ -136,7 +136,7 @@ const Form = ({currentId, setCurrentId}) => {
         setPostData({
             // creator: '',
             title: '',
-            mmessage: '',
+            message: '',
             tags: '',
             selectedFile:'',
         })
