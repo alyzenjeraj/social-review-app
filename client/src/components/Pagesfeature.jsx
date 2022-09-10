@@ -5,9 +5,11 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { getPosts } from '../actions/posts'
 
+import useStyles from './styles';
+
 const Pagesfeature = ({ page }) => {
     const { numberOfPages } = useSelector((state) => state.posts)
-
+    const classes = useStyles();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -15,7 +17,7 @@ const Pagesfeature = ({ page }) => {
     }, [page])
 
     return (
-        <Pagination count={numberOfPages} page={Number(page) || 1} variant='outlined' color='primary' renderItem={(item) => (
+        <Pagination classes={{ ul: classes.ul }} count={numberOfPages} page={Number(page) || 1} variant='outlined' color='primary' renderItem={(item) => (
             <PaginationItem {...item} component={Link} to={`/posts?page=${item.page}`} />
         )} />
     )

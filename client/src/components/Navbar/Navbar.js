@@ -44,7 +44,7 @@ const Navbar = () => {
         <div>
             <AppBar className={classes.appBar} position='static' color='inherit'>
                 <div>
-                    <Typography component={Link} to='/' className={classes.heading} variant='h2' align='center'>Resto-Reviews</Typography> 
+                    <Typography component={Link} to='/' className={classes.heading} variant='h2' align='center'>RevShare</Typography> 
                     <img className={classes.image} src={restoRev} alt='restorev' height='60' />
                 </div>
                 <Toolbar className={classes.toolbar}>

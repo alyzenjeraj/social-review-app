@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { AppBar, Typography, Grow, Grid, Container } from '@material-ui/core';
-import { getPosts } from './actions/posts'
-import { useDispatch } from 'react-redux';
+import React from 'react'
+import { Container } from '@material-ui/core';
+
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 
@@ -9,9 +8,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import Navbar from './components/Navbar/Navbar'
 import Home from './components/Home/Home';
-import PostDetails from './components/PostDetails';
-import Posts from './components/Posts';
-import Form from './components/Form';
+import PostDetails from './components/PostDetails/PostDetails';
+
 // import useStyles from './styles'
 import Auth from './components/Auth/Auth';
 

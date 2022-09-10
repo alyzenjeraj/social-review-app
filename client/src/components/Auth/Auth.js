@@ -113,7 +113,7 @@ const Auth = () => {
                     <Button type='submit' fullWidth variant='contained' color='primary' className={classes.submit}>
                         {isSignup ? 'Sign Up' : 'Sign In'}
                     </Button>
-                    <div id='signInDiv'></div>
+                    {/* <div id='signInDiv'></div> */}
                     {/* <GoogleLogin render={(renderProps) => (
                         <Button className={classes.googleButton} color='primary' fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} variant='contained' >Google Sign In</Button>
                     )} onSuccess={googleSuccess} onError={googleFailure} cookiePolicy='single_host_origin' /> */}
